@@ -5,9 +5,9 @@ from django.contrib.auth.models import User
 
 class RegisterForm(ModelForm):
 
-    password = forms.CharField()
-    password_check = forms.CharField()
+    password = forms.CharField(widget=forms.PasswordInput())
+    password_check = forms.CharField(widget=forms.PasswordInput())
 
     class Meta:
         model = User
-        fields = ['first_name', 'last_name', 'username']
+        fields = ['first_name', 'last_name', 'username', 'email']

@@ -4,6 +4,9 @@
 <form method="POST">
 {% csrf_token %}
 {{ form.as_p }}
+{% if pass_error == True %}
+<div class="ErrorMsg">Password does not match</div>
+{% endif %}
 <button>Submit!</button>
 </form>
 {% endblock %}
