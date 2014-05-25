@@ -8,3 +8,6 @@ class Message(models.Model):
     location = models.TextField(blank=True)
     author = models.ForeignKey(User)
 
+class UserFollowingRelationship(models.Model):
+    follower = models.ForeignKey(User, related_name = "user_follower")
+    followed = models.ForeignKey(User, related_name = "user_followed")
