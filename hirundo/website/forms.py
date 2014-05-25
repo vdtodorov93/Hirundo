@@ -1,10 +1,13 @@
 from django.forms import ModelForm
 from django import forms
 from django.contrib.auth.models import User
+#from django.db import models
 
 class RegisterForm(ModelForm):
-    email = forms.EmailField()
+
+    password = forms.CharField()
+    password_check = forms.CharField()
 
     class Meta:
-        model = Article
-        exclude = ['title']
+        model = User
+        fields = ['first_name', 'last_name', 'username']
