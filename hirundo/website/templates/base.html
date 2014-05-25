@@ -1,0 +1,15 @@
+<html>
+<head>
+    <title>Hirundo</title>
+</head>
+<h1> Welcome to Hirundo! </h1>
+<body>
+    {% if user.is_authenticated %}
+            <h4> Hello, {{ user.get_full_name }} </h4>
+        {% else %}
+            <h4>Please login! </h4>
+        {% endif %}
+    {% block content %}
+    {% endblock %}
+</body>
+</html>
