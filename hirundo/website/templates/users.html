@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h2>List of all users in the system</h1>
+{% for user_ in all_users %}
+{% if user_.username != user.username %}
+<div> {{ user_.username }} </div>
+<div> {{ user_.email }} </div>
+<hr>
+{% endif %}
+{% endfor %}
+{% endblock %}

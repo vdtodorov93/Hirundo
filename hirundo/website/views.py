@@ -1,9 +1,11 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from .models import Message
 from django.contrib.auth.models import User
-from .forms import RegisterForm
+from .forms import RegisterForm, LoginForm
 from django.core.exceptions import ObjectDoesNotExist
 from django.forms.util import ErrorList
+from django.contrib.auth import authenticate, login as auth_login, logout as auth_logout
+from django.contrib.auth.decorators import login_required
 
 def home(request):
     a = 5
@@ -40,6 +42,36 @@ def register(request):
         #return redirect('home')
 
     return render(request, "register.html", locals())
+
+def login(request):
+    data = request.POST if request.POST else None
+    form = LoginForm(data)
+    wrong_user = False
+    if request.method == 'POST':
+        if form.is_valid():
+            password = form.cleaned_data['password']
+            username = form.cleaned_data['username']
+            user = authenticate(username=username, password=password)
+            if user is not None:
+                if user.is_active:
+                    auth_login(request, user)
+                    redirect('home')
+                redirect('home')
+            else:
+                wrong_user = True
+                return render(request, "login.html", locals())
+        return redirect('/')
+    return render(request, "login.html", locals())
+
+def logout(request):
+    auth_logout(request)
+    return redirect('/')
+
+@login_required
+def users(request):
+    all_users = User.objects.all()
+    return render(request, "users.html", locals())
+
 
 
 
