@@ -13,4 +13,6 @@ urlpatterns = patterns('website.views',
     url(r'^unfollow/(?P<unfollow_user>\w+)$', 'unfollow', name='unfollow'),
     url(r'^messages/$', 'messages', name='messages'),
     url(r'^createmessage/$', 'createmessage', name='createmessage'),
+    url(r'^about/$', 'about', name='about'),
+    url(r'^contact/$', 'contact', name='contact'),
 )

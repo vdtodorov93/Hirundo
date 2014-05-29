@@ -1,10 +1,10 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<hr>
+
 {% for message in all_messages_from_followed_users %}
 <article>
-    <header>
+    <!--<header>
         <h4>user: {{ message.author.username }}</h4>
     </header>
         <p>
@@ -17,6 +17,16 @@
             {{ message.pub_date }}
         </div>
         <hr>
+    -->
+
+    <div class="panel panel-default">
+            <div class="panel-heading">
+              <h3 class="panel-title"> {{ message.author.username }}</h3>
+            </div>
+            <div class="panel-body">
+              {{ message.text }}
+            </div>
+          </div>
 </article>
 {% endfor %}
 {% endblock %}

@@ -24,5 +24,9 @@ class PostMessageForm(ModelForm):
     class Meta:
         model = Message
         fields = ['text', 'location']
+        widgets = {
+            'text': forms.Textarea(attrs={'rows':2, 'cols':40}),
+            'location': forms.Textarea(attrs={'rows':1, 'cols':40}),
+        }
 
 

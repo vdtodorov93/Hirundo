@@ -32,8 +32,12 @@ def register(request):
                 user.first_name = first_name
                 user.last_name = last_name
                 user.save()
-
-            return render(request, "register.html", locals())
+                user = authenticate(username=username, password=pass1)
+                if user is not None:
+                    if user.is_active:
+                        auth_login(request, user)
+            #return render(request, "register.html", locals())
+            return redirect('/')
 
     return render(request, "register.html", locals())
 
@@ -107,5 +111,10 @@ def createmessage(request):
             message.save()
         return redirect('/messages/')
 
-
     return render(request, "createmessage.html", locals())
+
+def about(request):
+    return render(request, "about.html", locals())
+
+def contact(request):
+    return render(request, "contact.html", locals())

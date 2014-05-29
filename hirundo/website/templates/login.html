@@ -4,9 +4,9 @@
 {% csrf_token %}
 {{ form.as_p }}
 {% if wrong_user == True %}
-<div class="ErrorMsg">Wrong username or password!</div>
+<div class="alert alert-danger">Wrong username or password!</div>
 {% endif %}
-<button>Submit!</button>
+<button type="submit" class="btn btn-lg btn-success">Login</button>
 </form>
 
 
