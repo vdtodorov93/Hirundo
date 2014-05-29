@@ -1,8 +1,16 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<h2>List of all users in the system</h1>
-{% for user_ in all_users %}
+<h4>List of followed users</h4>
+{% for user_ in followed_users %}
+{% if user_.username != user.username %}
+<div> {{ user_.username }} </div>
+<div> {{ user_.email }} </div>
+<hr>
+{% endif %}
+{% endfor %}
+<h4>List of not followed users</h4>
+{% for user_ in not_followed_users %}
 {% if user_.username != user.username %}
 <div> {{ user_.username }} </div>
 <div> {{ user_.email }} </div>

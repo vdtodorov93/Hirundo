@@ -16,7 +16,7 @@
 <h1> Welcome to Hirundo! </h1>
 <body>
     {% if user.is_authenticated %}
-            <h4> Hello, {{ user.get_full_name }} </h4>
+            <h4> Hello, {{ request.user.first_name }} </h4>
         {% else %}
             <h4>Please <a href='/login/'>login</a> or <a href='/register/'>register</a> </h4>
         {% endif %}

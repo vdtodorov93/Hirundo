@@ -1,5 +1,5 @@
 from django.shortcuts import render, get_object_or_404, redirect
-from .models import Message
+from .models import Message, UserFollowingRelationship
 from django.contrib.auth.models import User
 from .forms import RegisterForm, LoginForm
 from django.core.exceptions import ObjectDoesNotExist
@@ -8,7 +8,6 @@ from django.contrib.auth import authenticate, login as auth_login, logout as aut
 from django.contrib.auth.decorators import login_required
 
 def home(request):
-    a = 5
     return render(request, "home.html", locals())
 
 def register(request):
@@ -21,11 +20,7 @@ def register(request):
             pass1 = form.cleaned_data['password']
             pass2 = form.cleaned_data['password_check']
             if pass1 != pass2 or pass1 == None:
-                #return redirect('register')
-                #form._errors['password'] = ErrorList(u"Password does not match")
-                #form.add_error(password, 'Password does not match')
                 pass_error = True
-                #raise form.ValidationError("The password does not match")
                 return render(request, "register.html", locals())
 
             first_name = form.cleaned_data['first_name']
@@ -39,7 +34,6 @@ def register(request):
                 user.save()
 
             return render(request, "register.html", locals())
-        #return redirect('home')
 
     return render(request, "register.html", locals())
 
@@ -70,6 +64,12 @@ def logout(request):
 @login_required
 def users(request):
     all_users = User.objects.all()
+    followed_users = [usr.followed for usr in UserFollowingRelationship.objects.all().filter(follower__username=request.user.username)]
+    not_followed_users = []
+    for usr in all_users:
+        if usr not in followed_users:
+            not_followed_users.append(usr)
+
     return render(request, "users.html", locals())
 
 
