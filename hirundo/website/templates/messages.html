@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<hr>
+{% for message in all_messages_from_followed_users %}
+<article>
+    <header>
+        <h4>user: {{ message.author.username }}</h4>
+    </header>
+        <p>
+            text: {{ message.text }}
+        </p>
+        {% if message.location != None %}
+            From: {{ message.location }}
+        {% endif %}
+        <div>
+            {{ message.pub_date }}
+        </div>
+        <hr>
+</article>
+{% endfor %}
+{% endblock %}

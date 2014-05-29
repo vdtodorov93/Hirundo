@@ -1,7 +1,7 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from .models import Message, UserFollowingRelationship
 from django.contrib.auth.models import User
-from .forms import RegisterForm, LoginForm
+from .forms import RegisterForm, LoginForm, PostMessageForm
 from django.core.exceptions import ObjectDoesNotExist
 from django.forms.util import ErrorList
 from django.contrib.auth import authenticate, login as auth_login, logout as auth_logout
@@ -88,5 +88,24 @@ def unfollow(request, unfollow_user):
         pass
     return redirect('/users')
 
+@login_required
+def messages(request):
+    followed_users = [user.followed.username for user in UserFollowingRelationship.objects.filter(follower__username=request.user.username).all()]
+    #followed_users = [user for user in UserFollowingRelationship.objects.filter(follower__username=request.user.username).all()]
+    all_messages_from_followed_users = Message.objects.filter(author__username__in=followed_users).order_by('-pub_date')[:10]
+    return render(request, "messages.html", locals())
 
-# Create your views here.
+@login_required
+def createmessage(request):
+    data = request.POST if request.POST else None
+    form = PostMessageForm(data)
+    if request.method == 'POST':
+        if form.is_valid():
+            text = form.cleaned_data['text']
+            location = form.cleaned_data['location']
+            message = Message(author=request.user, text=text, location=location)
+            message.save()
+        return redirect('/messages/')
+
+
+    return render(request, "createmessage.html", locals())

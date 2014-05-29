@@ -1,6 +1,7 @@
 from django.forms import ModelForm
 from django import forms
 from django.contrib.auth.models import User
+from .models import Message
 #from django.db import models
 
 class RegisterForm(ModelForm):
@@ -17,6 +18,11 @@ class LoginForm(forms.Form):
     username = forms.CharField()
     password = forms.CharField(widget=forms.PasswordInput())
 
-    #class Meta:
-     #   model = User
-     #   fields = ['username', 'password']
+
+class PostMessageForm(ModelForm):
+
+    class Meta:
+        model = Message
+        fields = ['text', 'location']
+
+
