@@ -72,7 +72,21 @@ def users(request):
 
     return render(request, "users.html", locals())
 
+@login_required
+def follow(request, follow_user):
+    if not UserFollowingRelationship.objects.filter(follower__username=request.user.username, followed__username=follow_user).exists():
+        followed_user = User.objects.all().filter(username=follow_user).first()
+        follow_relationship = UserFollowingRelationship(follower=request.user, followed=followed_user)
+        follow_relationship.save()
+    return redirect('/users')
 
+@login_required
+def unfollow(request, unfollow_user):
+    try:
+        UserFollowingRelationship.objects.filter(follower__username=request.user.username, followed__username=unfollow_user).delete()
+    except:
+        pass
+    return redirect('/users')
 
 
 # Create your views here.

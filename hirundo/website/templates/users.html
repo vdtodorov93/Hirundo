@@ -6,6 +6,7 @@
 {% if user_.username != user.username %}
 <div> {{ user_.username }} </div>
 <div> {{ user_.email }} </div>
+<a href="/unfollow/{{ user_.username }}">unfollow</a>
 <hr>
 {% endif %}
 {% endfor %}
@@ -14,6 +15,7 @@
 {% if user_.username != user.username %}
 <div> {{ user_.username }} </div>
 <div> {{ user_.email }} </div>
+<a href="/follow/{{ user_.username }}">follow</a>
 <hr>
 {% endif %}
 {% endfor %}
