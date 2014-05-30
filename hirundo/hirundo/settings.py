@@ -16,8 +16,6 @@ BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.6/howto/deployment/checklist/
 
-# SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'tfcsf=b#o92p2@eyt#*kk=v0ze)b(%1z*+sl%oc67ndd1^h8bt'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -84,3 +82,8 @@ PROJECT_PATH = os.path.dirname(os.path.abspath(__file__))
 STATIC_ROOT='staticfiles'
 
 STATIC_URL = '/static/'
+
+try:
+    from .local_settings import *
+except ImportError:
+    exit("local_settings.py not found!")
