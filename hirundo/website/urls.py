@@ -15,4 +15,5 @@ urlpatterns = patterns('website.views',
     url(r'^createmessage/$', 'createmessage', name='createmessage'),
     url(r'^about/$', 'about', name='about'),
     url(r'^contact/$', 'contact', name='contact'),
+    url(r'^mymessages/$', 'mymessages', 'mymessages'),
 )
