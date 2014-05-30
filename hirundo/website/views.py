@@ -121,3 +121,10 @@ def contact(request):
 def mymessages(request):
     my_messages = Message.objects.filter(author=request.user).order_by('-pub_date')
     return render(request, "mymessages.html", locals())
+
+@login_required
+def delete_message_by_id(request, message_id):
+    message_to_delete = Message.objects.get(id=message_id)
+    if message_to_delete.author == request.user:
+        message_to_delete.delete()
+    return redirect('/mymessages')

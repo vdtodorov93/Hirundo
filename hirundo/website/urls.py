@@ -16,4 +16,5 @@ urlpatterns = patterns('website.views',
     url(r'^about/$', 'about', name='about'),
     url(r'^contact/$', 'contact', name='contact'),
     url(r'^mymessages/$', 'mymessages', name='mymessages'),
+    url(r'^mymessages/delete/(?P<message_id>\d+)$', 'delete_message_by_id', name='delete_message_by_id'),
 )
