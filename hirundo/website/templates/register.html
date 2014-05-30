@@ -1,6 +1,38 @@
 {% extends 'base.html' %}
 
 {% block content %}
+<!--
+<form role="form" class="form-horizontal" method="post">
+    {% csrf_token %}
+    <div class="form-group">
+        {% for field in form %}
+            <div class="input-group">
+                <span class="input-group-addon" style="background-color:#b77b48; color:white">
+                    <span class="glyphicon glyphicon-user">
+                        {{ field.label_tag }}
+                    </span>
+                </span>
+                <input class="form-control" id="{{ field.id_for_label }}" name="{{ field.html_name }}" type="{{ field.html_name }}" />
+                {{ field.errors }}
+            </div>
+        {% endfor %}
+    </div>
+
+
+</form>-->
+
+<form method="post">
+{% csrf_token %}
+    {% for field in form %}
+    <div class="input-group">
+        {{ field.label_tag }} {{ field }}
+        {{ field.errors }}
+    </div>
+    {% endfor %}
+    <button type="submit" class="btn btn-lg btn-success">Submit</button>
+</form>
+
+<!--
 <form method="POST">
 {% csrf_token %}
 {{ form.as_p }}
@@ -10,3 +42,4 @@
 <button type="submit" class="btn btn-lg btn-success">Submit</button>
 </form>
 {% endblock %}
+-->

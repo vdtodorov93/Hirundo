@@ -17,3 +17,8 @@ body {
     width:40%;
     height:auto;
 }
+
+#label_tag{
+    padding: 3px;
+    margin: 3px;
+}
