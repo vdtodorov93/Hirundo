@@ -4,27 +4,35 @@
 
 {% for message in all_messages_from_followed_users %}
 <article>
-    <!--<header>
-        <h4>user: {{ message.author.username }}</h4>
-    </header>
-        <p>
-            text: {{ message.text }}
-        </p>
-        {% if message.location != None %}
-            From: {{ message.location }}
-        {% endif %}
-        <div>
-            {{ message.pub_date }}
-        </div>
-        <hr>
-    -->
-
     <div class="panel panel-default">
             <div class="panel-heading">
-              <h3 class="panel-title"> {{ message.author.username }}</h3>
+                <h3 class="panel-title">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <strong>User:</strong>
+                            {{ message.author.username }}
+                        </div>
+                        <div class="col-md-4">
+                            <strong>Date:</strong>
+                            {{ message.pub_date }}
+                        </div>
+                        <div class="col-md-4">
+                            <strong>Location:</strong>
+                            {{ message.location }}
+                        </div>
+                    </div>
+                </h3>
             </div>
             <div class="panel-body">
-              {{ message.text }}
+                <div class="row">
+                    <div class="col-md-12">
+                        <strong>Message:</strong>
+                        {{ message.text }}
+                    </div>
+                </div>
+                <div class="row">
+
+                </div>
             </div>
           </div>
 </article>

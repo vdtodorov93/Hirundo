@@ -13,4 +13,7 @@ body {
   margin: 5px 0;
 }
 
-
+.large-img {
+    width:40%;
+    height:auto;
+}

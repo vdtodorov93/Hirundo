@@ -2,21 +2,35 @@
 
 {% block content %}
 <h4>List of followed users</h4>
+<div class="row">
+    <div class="col-md-2"> <strong>User:</strong> </div>
+    <div class="col-md-2"> <strong>Email:</strong> </div>
+</div>
 {% for user_ in followed_users %}
 {% if user_.username != user.username %}
-<div> {{ user_.username }} </div>
-<div> {{ user_.email }} </div>
-<a href="/unfollow/{{ user_.username }}">unfollow</a>
-<hr>
+<div class="row">
+    <div class="col-md-2"> {{ user_.username }} </div>
+    <div class="col-md-2"> {{ user_.email }} </div>
+    <div class="col-md-2">
+        <a href="/unfollow/{{ user_.username }}" class="btn btn-danger btn-xs">unfollow</a>
+    </div>
+</div>
 {% endif %}
 {% endfor %}
 <h4>List of not followed users</h4>
+<div class="row">
+    <div class="col-md-2"> <strong>User:</strong> </div>
+    <div class="col-md-2"> <strong>Email:</strong> </div>
+</div>
 {% for user_ in not_followed_users %}
 {% if user_.username != user.username %}
-<div> {{ user_.username }} </div>
-<div> {{ user_.email }} </div>
-<a href="/follow/{{ user_.username }}">follow</a>
-<hr>
+<div class="row">
+    <div class="col-md-2"> {{ user_.username }} </div>
+    <div class="col-md-2"> {{ user_.email }} </div>
+    <div class="col-md-2">
+        <a href="/follow/{{ user_.username }}" class="btn btn-primary btn-xs">follow</a>
+    </div>
+</div>
 {% endif %}
 {% endfor %}
 {% endblock %}

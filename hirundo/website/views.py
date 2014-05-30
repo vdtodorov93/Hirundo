@@ -95,7 +95,6 @@ def unfollow(request, unfollow_user):
 @login_required
 def messages(request):
     followed_users = [user.followed.username for user in UserFollowingRelationship.objects.filter(follower__username=request.user.username).all()]
-    #followed_users = [user for user in UserFollowingRelationship.objects.filter(follower__username=request.user.username).all()]
     all_messages_from_followed_users = Message.objects.filter(author__username__in=followed_users).order_by('-pub_date')[:10]
     return render(request, "messages.html", locals())
 
