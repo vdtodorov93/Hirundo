@@ -36,7 +36,6 @@ def register(request):
                 if user is not None:
                     if user.is_active:
                         auth_login(request, user)
-            #return render(request, "register.html", locals())
             return redirect('/')
 
     return render(request, "register.html", locals())
@@ -117,3 +116,8 @@ def about(request):
 
 def contact(request):
     return render(request, "contact.html", locals())
+
+@login_required
+def mymessages(request):
+    my_messages = Message.objects.filter(author=request.user).order_by('-pub_date')
+    return render(request, "mymessages.html", locals())
