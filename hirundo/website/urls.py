@@ -3,8 +3,9 @@ from django.contrib.flatpages import views
 from django.conf.urls import url
 
 
-urlpatterns = patterns('website.views',
-    url(r'^$', 'home', name="home"),
+urlpatterns = patterns(
+    'website.views',
+    url(r'^$', 'home', name='home'),
     url(r'^register/$', 'register', name='register'),
     url(r'^login/$', 'login', name='login'),
     url(r'^logout/$', 'logout', name='logout'),
@@ -16,5 +17,9 @@ urlpatterns = patterns('website.views',
     url(r'^about/$', 'about', name='about'),
     url(r'^contact/$', 'contact', name='contact'),
     url(r'^mymessages/$', 'mymessages', name='mymessages'),
-    url(r'^mymessages/delete/(?P<message_id>\d+)$', 'delete_message_by_id', name='delete_message_by_id'),
+    url(
+        r'^mymessages/delete/(?P<message_id>\d+)$',
+        'delete_message_by_id',
+        name='delete_message_by_id'
+    ),
 )
